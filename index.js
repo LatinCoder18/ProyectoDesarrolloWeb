@@ -2,6 +2,8 @@ const express = require('express');
 const app = express();
 const logger = require('./middlewares/logs');
 const aulas = require('./routes/aula');
+dotenv = require('dotenv');
+dotenv.config();
 //Middlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -13,7 +15,7 @@ app.use('/aulas', aulas);
 
 
 //Punto de ejecucion del servidor
-app.listen(3000, () => {
+app.listen(process.env.SERVER_PORT, () => {
     // Pueden personalizar su mensaje de consola
-    console.log('Servidor ejecutandose !!!');
+    console.log(`Servidor corriendo en ${process.env.SERVER}:${process.env.SERVER_PORT}`);
 })
