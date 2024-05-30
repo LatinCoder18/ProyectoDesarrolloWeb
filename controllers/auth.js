@@ -1,4 +1,4 @@
-
+const generarJWT = require('../helpers/Autorization');
 const users = [
     { id: 1, name: 'Alexandre', email: 'prueba@gmail.com', password: '123456' },
     { id: 2, name: 'Lucas', email: 'lucas@gmail.com', password: '123456' },
@@ -11,6 +11,7 @@ module.exports = {
         if (!user) {
             return res.status(401).json({ message: 'Invalid credentials' });
         }
-        res.json({user});
+        const token = await generarJWT(user.id);
+        res.json({ user, token });
     }
 }
