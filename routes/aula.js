@@ -3,7 +3,7 @@ const router = Router();
 const { find, findById, create, update, remove } = require('../controllers/aula');
 const { validateId } = require('../middlewares/validations');
 const { validateJWT } = require('../middlewares/validateJWT');
-
+const ErrorValidator = require('../middlewares/errorvalidator');
 router.get('/', find)
 router.get('/:id', [validateId, validateJWT], findById)
 router.post('/', create);
